@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación del Sistema - Hevelab Viision ERP</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        header h1 {
+            color: #fff;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .flow-step {
+            background: #eef2f5;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #c7254e;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tech-badge {
+            background: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Documentación: Sistema de Login Facial (Hevelab Viision ERP)</h1>
+    <p>Explicación del funcionamiento y desarrollo técnico</p>
+</header>
+
+<div class="container">
+    <div class="section">
+        <h2>1. ¿Cómo funciona? (Flujo del Usuario)</h2>
+        <p>El sistema implementa un inicio de sesión biométrico basado en reconocimiento facial, complementado con un segundo factor de autenticación (OTP por correo). El flujo es el siguiente:</p>
+        
+        <div class="flow-step">
+            <strong>Paso 1: Captura Facial (Frontend)</strong><br>
+            El usuario accede al portal y selecciona "Iniciar sesión con rostro". La cámara web se activa mediante un modal y el sistema analiza en tiempo real el rostro utilizando inteligencia artificial en el navegador. Se requieren 4 detecciones estables para capturar los rasgos faciales.
+        </div>
+        <div class="flow-step">
+            <strong>Paso 2: Extracción de Descriptores</strong><br>
+            Una vez validado el rostro, el sistema genera un "descriptor facial" (un arreglo matemático de 128 dimensiones que representa las características únicas de la cara) y lo envía de forma segura al servidor.
+        </div>
+        <div class="flow-step">
+            <strong>Paso 3: Verificación Biométrica (Backend)</strong><br>
+            El servidor (PHP) recibe el descriptor y lo compara con todos los rostros registrados en la base de datos calculando la <em>Distancia Euclidiana</em>. Si la distancia entre el rostro capturado y uno almacenado es menor a <code>0.52</code>, se considera una coincidencia exitosa.
+        </div>
+        <div class="flow-step">
+            <strong>Paso 4: Doble Factor de Autenticación (2FA)</strong><br>
+            Como medida de seguridad adicional, el sistema no da acceso inmediato. Genera un código OTP (One-Time Password) de 6 dígitos válido por 5 minutos y lo envía al correo electrónico del usuario reconocido.
+        </div>
+        <div class="flow-step">
+            <strong>Paso 5: Acceso al Sistema</strong><br>
+            El usuario es redirigido a una pantalla donde debe ingresar el código recibido en su correo. Si es correcto, ingresa al Dashboard principal.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. ¿Cómo se desarrolló? (Arquitectura Técnica)</h2>
+        <p>El proyecto está estructurado bajo el patrón de arquitectura <strong>MVC (Modelo-Vista-Controlador)</strong>. A continuación, se detallan las tecnologías y componentes clave:</p>
+        
+        <div class="tech-stack">
+            <span class="tech-badge">PHP 8+</span>
+            <span class="tech-badge">MySQL / PDO</span>
+            <span class="tech-badge">JavaScript (ES6)</span>
+            <span class="tech-badge">Face-API.js</span>
+            <span class="tech-badge">PHPMailer</span>
+            <span class="tech-badge">HTML5 / CSS3</span>
+        </div>
+
+        <h3>2.1. Frontend (Reconocimiento en Navegador)</h3>
+        <p>Se utiliza la librería <code>face-api.js</code> (basada en TensorFlow.js) en el archivo <code>assets/js/face_auth.js</code>. Se cargan tres modelos neuronales preentrenados ubicados en <code>assets/models/</code>:</p>
+        <ul>
+            <li><strong>SsdMobilenetv1:</strong> Para detectar dónde hay un rostro en el video de la cámara.</li>
+            <li><strong>FaceLandmark68Net:</strong> Para ubicar 68 puntos clave en el rostro (ojos, nariz, boca).</li>
+            <li><strong>FaceRecognitionNet:</strong> Para generar el descriptor matemático de 128 dimensiones.</li>
+        </ul>
+        <p>Este enfoque garantiza la privacidad, ya que el procesamiento de la imagen se hace en el dispositivo del usuario y solo viajan números (el descriptor) al servidor.</p>
+
+        <h3>2.2. Backend (API y Lógica de Negocio)</h3>
+        <p>El archivo central para esta función es <code>api/face_login.php</code>. Su lógica interna es la siguiente:</p>
+        <ol>
+            <li>Recibe el JSON con el descriptor (array de 128 floats).</li>
+            <li>Consulta a la base de datos (mediante PDO) todos los usuarios que tienen un <code>face_descriptor</code> guardado.</li>
+            <li>Ejecuta un bucle iterando sobre cada usuario para calcular la distancia euclidiana:
+                <pre>
+$sum = 0.0;
+for ($i = 0; $i < 128; $i++) {
+    $diff = (float)$inputDescriptor[$i] - (float)$stored[$i];
+    $sum += $diff * $diff;
+}
+$dist = sqrt($sum);</pre>
+            </li>
+            <li>Identifica la menor distancia. Si es menor al umbral estricto de <code>0.52</code>, el usuario es validado.</li>
+        </ol>
+
+        <h3>2.3. Seguridad y Base de Datos</h3>
+        <ul>
+            <li><strong>Protección contra suplantación:</strong> Al requerir un código OTP por correo (usando <code>PHPMailer</code>), se mitiga el riesgo de que alguien intente ingresar usando una foto frente a la cámara.</li>
+            <li><strong>Base de datos segura:</strong> Se utilizan consultas preparadas (Prepared Statements) con PDO para evitar inyección SQL (ej. al guardar el código OTP).</li>
+            <li><strong>Estructura MVC:</strong> El código está ordenado en <code>controllers/</code>, <code>models/</code>, y <code>views/</code>, separando la lógica de datos, reglas de negocio e interfaz de usuario.</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

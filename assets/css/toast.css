@@ -1,0 +1,152 @@
+/* ── Contenedor ───────────────────────────────────────────── */
+#hv-toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 99997;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+    max-width: 380px;
+    width: calc(100vw - 40px);
+}
+
+/* ── Toast base ───────────────────────────────────────────── */
+.hv-toast {
+    background: #1c2128;
+    border: 1px solid #30363d;
+    border-left: 4px solid transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    pointer-events: all;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45),
+                0 2px 8px  rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transform: translateX(24px) scale(0.96);
+    transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.22,1,0.36,1);
+}
+
+.hv-toast.hv-toast-visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+.hv-toast.hv-toast-out {
+    opacity: 0;
+    transform: translateX(24px) scale(0.95);
+    transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+/* ── Contenido ────────────────────────────────────────────── */
+.hv-toast-body {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 12px 11px;
+}
+
+/* ── Ícono ────────────────────────────────────────────────── */
+.hv-toast-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hv-toast-icon svg {
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+/* ── Mensaje ──────────────────────────────────────────────── */
+.hv-toast-msg {
+    flex: 1;
+    font-size: 13.5px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: #e6edf3;
+    line-height: 1.45;
+}
+
+/* ── Botón cerrar ─────────────────────────────────────────── */
+.hv-toast-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #484f58;
+    padding: 4px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    line-height: 0;
+}
+.hv-toast-close svg { width: 13px; height: 13px; }
+.hv-toast-close:hover {
+    color: #e6edf3;
+    background: rgba(255,255,255,0.06);
+}
+
+/* ── Barra de progreso ────────────────────────────────────── */
+.hv-toast-progress {
+    height: 3px;
+    width: 100%;
+    transition: width linear;
+}
+.hv-toast-progress.hv-toast-progress-run { width: 0%; }
+
+/* ── Variantes ────────────────────────────────────────────── */
+.hv-toast-success {
+    border-left-color: #22c55e;
+}
+.hv-toast-success .hv-toast-icon {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+}
+.hv-toast-success .hv-toast-progress { background: #22c55e; }
+
+.hv-toast-error {
+    border-left-color: #ef4444;
+}
+.hv-toast-error .hv-toast-icon {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+}
+.hv-toast-error .hv-toast-progress { background: #ef4444; }
+
+.hv-toast-info {
+    border-left-color: #00c4d4;
+}
+.hv-toast-info .hv-toast-icon {
+    background: rgba(0, 196, 212, 0.12);
+    color: #67e8f9;
+}
+.hv-toast-info .hv-toast-progress { background: #00c4d4; }
+
+.hv-toast-warning {
+    border-left-color: #f59e0b;
+}
+.hv-toast-warning .hv-toast-icon {
+    background: rgba(245, 158, 11, 0.12);
+    color: #fbbf24;
+}
+.hv-toast-warning .hv-toast-progress { background: #f59e0b; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+    #hv-toast-container {
+        top: 12px;
+        right: 12px;
+        left: 12px;
+        width: auto;
+        max-width: none;
+    }
+}
