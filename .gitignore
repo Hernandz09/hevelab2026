@@ -1,0 +1,18 @@
+# .gitignore
+# Dependencies
+/vendor/
+/composer.lock
+
+# PHP
+.php_cs.cache
+php_errors.log
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
