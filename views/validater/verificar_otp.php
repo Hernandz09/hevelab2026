@@ -31,7 +31,6 @@ $leftDesc = match($tipo) {
     default    => 'Confirma tu identidad ingresando el código enviado a tu correo.',
 };
 
-// Segundos del countdown según tipo
 $countdownSecs = ($tipo === 'reset') ? 120 : 60;
 ?>
 <!DOCTYPE html>
@@ -58,7 +57,7 @@ $countdownSecs = ($tipo === 'reset') ? 120 : 60;
 <?php endif; ?>
 <div class="auth-page">
 
-    <!-- ── PANEL IZQUIERDO ── -->
+    
     <div class="auth-left">
         <div class="auth-left-content">
             <div class="auth-left-top">
@@ -74,7 +73,7 @@ $countdownSecs = ($tipo === 'reset') ? 120 : 60;
                 <p><?= $leftDesc ?></p>
             </div>
 
-            <!-- Mascota Hevy flotando -->
+            
             <img src="../../assets/img/otp.png" class="hevy-mascot" alt="Mascota Hevy OTP">
 
             <div class="auth-left-bottom" style="z-index: 1;">
@@ -83,7 +82,7 @@ $countdownSecs = ($tipo === 'reset') ? 120 : 60;
         </div>
     </div>
 
-    <!-- ── PANEL DERECHO ── -->
+    
     <div class="auth-right">
         <p class="auth-form-label">Seguridad</p>
         <h1>Ingresar <span>código.</span></h1>
@@ -106,7 +105,7 @@ $countdownSecs = ($tipo === 'reset') ? 120 : 60;
             <button type="submit" class="btn-submit">Verificar código</button>
         </form>
 
-        <!-- Resend countdown -->
+        
         <div class="resend-wrap">
             <div class="resend-countdown" id="resend-countdown">
                 <span>¿No recibiste el código? Reenviar en</span>

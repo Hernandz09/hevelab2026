@@ -340,7 +340,6 @@ $nombre_corto = explode(' ', $usuario)[0];
 <script src="../../assets/js/theme.js"></script>
 <script src="../../assets/js/toast.js"></script>
 
-<!-- ══ SIDEBAR ══ -->
 <aside class="sidebar">
     <div class="sidebar-logo">
         <img src="../../assets/img/logodark_02.png" alt="HEVELAB" id="dash-logo">
@@ -379,9 +378,8 @@ $nombre_corto = explode(' ', $usuario)[0];
     </div>
 </aside>
 
-<!-- ══ MAIN ══ -->
 <div class="main">
-    <!-- TOPBAR -->
+    
     <header class="topbar">
         <div class="topbar-title">
             <h1>Gestión de Usuarios</h1>
@@ -399,10 +397,10 @@ $nombre_corto = explode(' ', $usuario)[0];
         </div>
     </header>
 
-    <!-- CONTENT -->
+    
     <main class="content">
 
-        <!-- STATS ROW -->
+        
         <div class="stats-row">
             <div class="mini-stat">
                 <div class="mini-stat-icon cyan">
@@ -442,7 +440,7 @@ $nombre_corto = explode(' ', $usuario)[0];
             </div>
         </div>
 
-        <!-- TOOLBAR -->
+        
         <div class="toolbar">
             <div class="toolbar-left">
                 <div class="search-box">
@@ -472,7 +470,7 @@ $nombre_corto = explode(' ', $usuario)[0];
             </div>
         </div>
 
-        <!-- TABLE -->
+        
         <div class="card">
             <div class="card-header">
                 <div>
@@ -503,7 +501,6 @@ $nombre_corto = explode(' ', $usuario)[0];
     </main>
 </div>
 
-<!-- ══ MODAL: CREAR / EDITAR ══ -->
 <div class="modal-overlay" id="modal-form">
     <div class="modal">
         <div class="modal-header">
@@ -533,7 +530,6 @@ $nombre_corto = explode(' ', $usuario)[0];
     </div>
 </div>
 
-<!-- ══ MODAL: CONFIRMAR ELIMINAR ══ -->
 <div class="modal-overlay" id="modal-confirm">
     <div class="modal" style="max-width:380px;">
         <div class="confirm-icon danger" id="confirm-icon">

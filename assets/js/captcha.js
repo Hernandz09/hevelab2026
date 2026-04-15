@@ -1,7 +1,4 @@
-/**
- * SliderCaptcha — CAPTCHA de puzzle deslizable
- * Uso: new SliderCaptcha({ container, onSuccess, onFail })
- */
+
 class SliderCaptcha {
     constructor(options) {
         this.container  = options.container;
@@ -17,9 +14,9 @@ class SliderCaptcha {
         this.currentX   = 0;
         this.targetX    = 0;
         this.targetY    = 0;
-        this.fails      = 0;          // intentos fallidos acumulados
-        this.maxFails   = 5;          // límite antes de bloquear
-        this.lockSecs   = 30;         // segundos de bloqueo
+        this.fails      = 0;          
+        this.maxFails   = 5;          
+        this.lockSecs   = 30;         
         this.locked     = false;
         this._lockTimer = null;
         this._moveH     = this._onMove.bind(this);
@@ -28,7 +25,7 @@ class SliderCaptcha {
         this.reset();
     }
 
-    // ── Render HTML ────────────────────────────────────────────
+    
     _render() {
         this.container.innerHTML = `
             <div class="sc-wrap">
@@ -71,9 +68,9 @@ class SliderCaptcha {
         document.addEventListener('touchend',   this._endH);
     }
 
-    // ── Generar puzzle aleatorio ────────────────────────────────
+    
     reset() {
-        if (this.locked) return;      // no resetear si está bloqueado
+        if (this.locked) return;      
         this.verified = false;
         this.currentX = 0;
         this.btn.style.left         = '0';
@@ -96,19 +93,19 @@ class SliderCaptcha {
         this._drawPiece();
     }
 
-    // ── Dibujar fondo ──────────────────────────────────────────
+    
     _drawBg() {
         const ctx = this.bgCtx;
         const { W, H, PS, targetX: tx, targetY: ty } = this;
 
-        // Gradiente azul
+        
         const g = ctx.createLinearGradient(0, 0, W, H);
         g.addColorStop(0, '#1a56db');
         g.addColorStop(1, '#1e3a8a');
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, W, H);
 
-        // Anillos decorativos (globo)
+        
         ctx.save();
         for (let i = 1; i <= 5; i++) {
             ctx.beginPath();
@@ -117,7 +114,7 @@ class SliderCaptcha {
             ctx.lineWidth = 1;
             ctx.stroke();
         }
-        // Círculo principal
+        
         ctx.beginPath();
         ctx.arc(W / 2, H / 2, H * 0.36, 0, Math.PI * 2);
         ctx.strokeStyle = 'rgba(255,255,255,0.18)';
@@ -125,12 +122,12 @@ class SliderCaptcha {
         ctx.stroke();
         ctx.restore();
 
-        // Estrellas / destellos
+        
         [[14, H / 2 - 25], [W - 14, H / 2 - 30], [14, H / 2 + 28], [W - 14, H / 2 + 24]].forEach(([x, y]) => {
             this._star(ctx, x, y, 6, 3);
         });
 
-        // Agujero del puzzle
+        
         ctx.save();
         this._piecePath(ctx, tx, ty);
         ctx.fillStyle = 'rgba(0,0,0,0.52)';
@@ -141,24 +138,24 @@ class SliderCaptcha {
         ctx.restore();
     }
 
-    // ── Dibujar pieza ──────────────────────────────────────────
+    
     _drawPiece() {
         const ctx = this.pieceCtx;
         const { W, H, PS, targetX: tx, targetY: ty } = this;
 
         ctx.clearRect(0, 0, PS, H);
 
-        // Copiar píxeles del fondo (zona del agujero)
+        
         ctx.save();
         this._piecePath(ctx, 0, ty);
         ctx.clip();
         ctx.drawImage(this.bgCanvas, tx, 0, PS, H, 0, 0, PS, H);
-        // Tinte verde HEVELAB
+        
         ctx.fillStyle = 'rgba(106,191,0,0.28)';
         ctx.fillRect(0, ty, PS, PS);
         ctx.restore();
 
-        // Borde de la pieza
+        
         ctx.save();
         this._piecePath(ctx, 0, ty);
         ctx.strokeStyle = 'rgba(255,255,255,0.9)';
@@ -166,34 +163,34 @@ class SliderCaptcha {
         ctx.stroke();
         ctx.restore();
 
-        // Sombra drop-shadow en el canvas
+        
         this.pieceCanvas.style.filter = 'drop-shadow(2px 2px 5px rgba(0,0,0,0.45))';
     }
 
-    // ── Forma de la pieza (rect + bump derecho) ────────────────
+    
     _piecePath(ctx, x, y) {
         const s = this.PS;
-        const r = s * 0.17; // radio del bump
+        const r = s * 0.17; 
         ctx.beginPath();
-        // Borde superior
+        
         ctx.moveTo(x, y);
         ctx.lineTo(x + s / 2 - r, y);
-        ctx.arc(x + s / 2, y, r, Math.PI, 0, true);   // bump arriba
+        ctx.arc(x + s / 2, y, r, Math.PI, 0, true);   
         ctx.lineTo(x + s, y);
-        // Borde derecho con bump
+        
         ctx.lineTo(x + s, y + s / 2 - r);
         ctx.arc(x + s, y + s / 2, r, Math.PI * 1.5, Math.PI * 0.5, false);
         ctx.lineTo(x + s, y + s);
-        // Borde inferior
+        
         ctx.lineTo(x + s / 2 + r, y + s);
         ctx.arc(x + s / 2, y + s, r, 0, Math.PI, true);
         ctx.lineTo(x, y + s);
-        // Borde izquierdo
+        
         ctx.lineTo(x, y);
         ctx.closePath();
     }
 
-    // ── Estrella decorativa ────────────────────────────────────
+    
     _star(ctx, cx, cy, r1, r2) {
         ctx.save();
         ctx.fillStyle  = '#facc15';
@@ -209,7 +206,7 @@ class SliderCaptcha {
         ctx.restore();
     }
 
-    // ── Eventos de arrastre ────────────────────────────────────
+    
     _onStart(e) {
         if (this.verified || this.locked) return;
         this.dragging = true;
@@ -253,7 +250,7 @@ class SliderCaptcha {
         this.btn.classList.add('sc-shake');
 
         if (this.fails >= this.maxFails) {
-            // Bloquear
+            
             setTimeout(() => this._lockout(), 600);
         } else {
             setTimeout(() => {
@@ -268,7 +265,7 @@ class SliderCaptcha {
         this.dragging = false;
         this.btn.classList.remove('sc-shake');
 
-        // Overlay de bloqueo sobre el canvas
+        
         let lockEl = this.container.querySelector('.sc-lock');
         if (!lockEl) {
             lockEl = document.createElement('div');

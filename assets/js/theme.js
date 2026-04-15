@@ -1,28 +1,28 @@
 (function() {
-    // 1. Cargar preferencia guardada o sistema
+    
     const savedTheme = localStorage.getItem('hv_theme') || localStorage.getItem('viision-theme');
     const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
     
     const currentTheme = savedTheme || (systemPrefersLight ? 'light' : 'dark');
     
-    // Asignar inmediatamente para evitar flash
+    
     if (currentTheme === 'light') {
         document.body.classList.add('light-theme');
     }
 
-    // 2. Lógica principal al cargar el DOM
+    
     document.addEventListener('DOMContentLoaded', () => {
         const body = document.body;
         const isLight = body.classList.contains('light-theme');
         
-        // Determinar el path base según la profundidad de la URL
+        
         const path = window.location.pathname.toLowerCase();
         const isRoot = !path.includes('/views/');
         const basePath = isRoot ? 'assets/img/' : '../../assets/img/';
 
-        // Función para actualizar todos los logos del sistema
+        
         function updateAllLogos(light) {
-            // Logo del Dashboard (sidebar)
+            
             const dashLogo = document.getElementById('dash-logo');
             if (dashLogo) {
                 dashLogo.src = light
@@ -30,16 +30,16 @@
                     : basePath + 'logodark_02.png';
             }
 
-            // Logo en vistas de auth (.brand-logo img)
+            
             const brandLogo = document.querySelector('.brand-logo img');
             if (brandLogo) {
-                // En auth usamos los logos horizontales
+                
                 brandLogo.src = light
                     ? basePath + 'horizo_logo_02.png'
                     : basePath + 'horizo_logo_01new.png';
             }
 
-            // Splash logos si existen
+            
             const splashLogo = document.getElementById('hv-splash-logo');
             if (splashLogo) {
                 splashLogo.src = light ? basePath + 'only_logo_01.png' : basePath + 'logo_carga.png';
@@ -50,14 +50,14 @@
             }
         }
 
-        // Aplicamos logos iniciales
+        
         updateAllLogos(isLight);
 
-        // BUSCAR SWITCH EXISTENTE (ej: Dashboard)
+        
         const existingSwitch = document.querySelector('.theme-switch');
         
         if (existingSwitch) {
-            // Vincular botones existentes
+            
             const exBtnDark = document.getElementById('btn-dark') || existingSwitch.querySelector('.btn-dark');
             const exBtnLight = document.getElementById('btn-light') || existingSwitch.querySelector('.btn-light');
 
@@ -67,7 +67,7 @@
                     localStorage.setItem('hv_theme', 'dark');
                     localStorage.setItem('viision-theme', 'dark');
                     updateAllLogos(false);
-                    // Sincronizar clases activas si es necesario
+                    
                     if (exBtnLight) exBtnLight.classList.remove('active');
                     exBtnDark.classList.add('active');
                 });
@@ -82,10 +82,10 @@
                     exBtnLight.classList.add('active');
                 });
             }
-            return; // No inyectar nada más
+            return; 
         }
 
-        // SI NO HAY SWITCH, INYECTAR EL FLOTANTE (Solo para pantallas de Auth)
+        
         const switchWrap = document.createElement('div');
         switchWrap.className = 'theme-switch-wrap';
         switchWrap.innerHTML = `

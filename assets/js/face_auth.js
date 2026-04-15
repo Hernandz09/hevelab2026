@@ -1,25 +1,18 @@
-/**
- * face_auth.js — Módulo de reconocimiento facial para HEVELAB VIISION ERP
- * Requiere: face-api.js (CDN) cargado ANTES de este script
- *
- * API pública:
- *   FaceAuth.openLoginModal()           → abre modal y autentica con cara
- *   FaceAuth.openRegisterCapture(cb)    → captura descriptor para registro
- */
+
 (function (window) {
     'use strict';
 
-    // ── Configuración ─────────────────────────────────────────
-    const MODELS_URL   = window.FACE_MODELS_URL || '../../assets/models';
-    const API_LOGIN    = window.FACE_API_LOGIN   || '../../api/face_login.php';
-    const THRESHOLD    = 0.52;   // distancia máxima para reconocer (más bajo = más estricto)
-    const STABLE_HITS  = 4;      // detecciones consecutivas antes de capturar
+
+    const MODELS_URL = window.FACE_MODELS_URL || '../../assets/models';
+    const API_LOGIN = window.FACE_API_LOGIN || '../../api/face_login.php';
+    const THRESHOLD = 0.52;
+    const STABLE_HITS = 4;
 
     let modelsLoaded = false;
-    let activeStream  = null;
-    let loopRunning   = false;
+    let activeStream = null;
+    let loopRunning = false;
 
-    // ── Cargar modelos (solo la primera vez) ──────────────────
+
     async function loadModels(onProgress) {
         if (modelsLoaded) return;
         onProgress?.('Cargando detector...');
@@ -31,7 +24,7 @@
         modelsLoaded = true;
     }
 
-    // ── Cámara ────────────────────────────────────────────────
+
     async function startCamera(videoEl) {
         const stream = await navigator.mediaDevices.getUserMedia({
             video: { facingMode: 'user', width: { ideal: 480 }, height: { ideal: 480 } }
@@ -47,12 +40,12 @@
         activeStream = null;
     }
 
-    // ── Bucle de detección ────────────────────────────────────
+
     async function detectionLoop(videoEl, opts) {
         const {
-            onStatus,    // fn(text, cls)
-            onProgress,  // fn(pct 0-100)
-            onCapture,   // fn(Float32Array descriptor)
+            onStatus,
+            onProgress,
+            onCapture,
             ovalGuide,
             scanBar,
         } = opts;
@@ -96,7 +89,7 @@
         detect();
     }
 
-    // ── Construir modal ───────────────────────────────────────
+
     function buildModal() {
         if (document.getElementById('face-modal-overlay')) return;
 
@@ -157,7 +150,7 @@
         const overlay = document.getElementById('face-modal-overlay');
         overlay.classList.remove('active');
         overlay.setAttribute('aria-hidden', 'true');
-        // Reset UI
+
         setTimeout(() => {
             document.getElementById('face-progress-bar').style.width = '0%';
             document.getElementById('face-status').textContent = 'Cargando modelos...';
@@ -181,13 +174,13 @@
 
     function setLoading(visible, text = '') {
         const overlay = document.getElementById('face-loading-overlay');
-        const textEl  = document.getElementById('face-loading-text');
+        const textEl = document.getElementById('face-loading-text');
         if (!overlay) return;
         overlay.classList.toggle('hidden', !visible);
         if (text && textEl) textEl.textContent = text;
     }
 
-    // ── LOGIN con rostro ──────────────────────────────────────
+
     async function openLoginModal() {
         buildModal();
         openModal();
@@ -214,12 +207,12 @@
         setLoading(false);
 
         await detectionLoop(video, {
-            onStatus:   setStatus,
+            onStatus: setStatus,
             onProgress: setProgress,
-            ovalGuide:  document.getElementById('face-oval'),
-            scanBar:    document.getElementById('face-scan-bar'),
-            onCapture:  async (descriptor) => {
-                // Detener cámara y enviar al servidor
+            ovalGuide: document.getElementById('face-oval'),
+            scanBar: document.getElementById('face-scan-bar'),
+            onCapture: async (descriptor) => {
+
                 stopCamera();
                 setStatus('Verificando identidad...', '');
                 setProgress(100);
@@ -243,12 +236,12 @@
                         setStatus(data.message || 'Rostro no reconocido. Intenta de nuevo.', 'fail');
                         window.showToast?.(data.message || 'Rostro no reconocido', 'error');
                         setProgress(0);
-                        // Reintentar
+
                         setTimeout(async () => {
                             if (!document.getElementById('face-modal-overlay')?.classList.contains('active')) return;
                             await startCamera(video);
                             setStatus('Acerca tu rostro al óvalo', '');
-                            detectionLoop(video, arguments[0]); // restart
+                            detectionLoop(video, arguments[0]);
                         }, 2000);
                     }
                 } catch (err) {
@@ -259,8 +252,14 @@
         });
     }
 
-    // ── CAPTURA para registro (sin modal, inline) ─────────────
+
     async function openRegisterCapture(onDescriptor) {
+        if (window.currentUserId) {
+            fetch('../../api/usuarios_api.php?action=actualizar_etapa', {
+                method: 'POST',
+                body: JSON.stringify({ id: window.currentUserId, etapa: 'Captura Biométrica' })
+            });
+        }
         buildModal();
         openModal();
         setLoading(true, 'Inicializando...');
@@ -286,10 +285,10 @@
         setStatus('Coloca tu rostro en el óvalo y mantén la posición', '');
 
         await detectionLoop(video, {
-            onStatus:   setStatus,
+            onStatus: setStatus,
             onProgress: setProgress,
-            ovalGuide:  document.getElementById('face-oval'),
-            scanBar:    document.getElementById('face-scan-bar'),
+            ovalGuide: document.getElementById('face-oval'),
+            scanBar: document.getElementById('face-scan-bar'),
             onCapture: (descriptor) => {
                 stopCamera();
                 setStatus('¡Rostro registrado correctamente!', 'ok');
@@ -303,7 +302,7 @@
         });
     }
 
-    // ── Exportar API pública ──────────────────────────────────
+
     window.FaceAuth = { openLoginModal, openRegisterCapture };
 
 })(window);

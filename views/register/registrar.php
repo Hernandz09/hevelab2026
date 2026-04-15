@@ -29,7 +29,7 @@ $resultado = $auth->registro();
 <?php endif; ?>
 <div class="auth-page">
 
-    <!-- ── PANEL IZQUIERDO ── -->
+    
     <div class="auth-left">
         <div class="auth-left-content">
             <div class="auth-left-top">
@@ -44,7 +44,7 @@ $resultado = $auth->registro();
                 <h2>Lleva tu administración<br>al <span>siguiente nivel.</span></h2>
             </div>
             
-            <!-- Mascota Hevy Variante Centrada -->
+            
             <img src="../../assets/img/recordando.png" class="hevy-mascot-reg" alt="Mascota Hevy">
 
             <div class="auth-left-bottom" style="z-index: 1;">
@@ -53,7 +53,7 @@ $resultado = $auth->registro();
         </div>
     </div>
 
-    <!-- ── PANEL DERECHO ── -->
+    
     <div class="auth-right">
         <p class="auth-form-label">Registro</p>
         <h1>Crear <span>cuenta.</span></h1>
@@ -121,10 +121,10 @@ $resultado = $auth->registro();
                 </div>
             </div>
 
-            <!-- Descriptor facial (oculto, se llena con JS) -->
+            
             <input type="hidden" name="face_descriptor" id="face_descriptor_input">
 
-            <!-- Sección facial opcional -->
+            
             <div class="face-register-section" id="face-register-section">
                 <button type="button" class="face-register-toggle" id="face-register-toggle">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -143,7 +143,6 @@ $resultado = $auth->registro();
     </div>
 </div>
 
-<!-- CAPTCHA MODAL -->
 <div class="captcha-overlay" id="captcha-overlay" aria-hidden="true">
     <div class="captcha-modal" role="dialog" aria-modal="true">
         <div class="captcha-header">

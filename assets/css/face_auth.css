@@ -1,8 +1,5 @@
-/**
- * face_auth.css — Estilos del módulo de reconocimiento facial HEVELAB
- */
 
-/* ── Modal overlay ────────────────────────────────────────── */
+
 .face-overlay {
     position: fixed;
     inset: 0;
@@ -22,7 +19,6 @@
     pointer-events: all;
 }
 
-/* ── Modal ────────────────────────────────────────────────── */
 .face-modal {
     background: #161b22;
     border: 1px solid #30363d;
@@ -36,7 +32,6 @@
 }
 .face-overlay.active .face-modal { transform: scale(1) translateY(0); }
 
-/* ── Header ───────────────────────────────────────────────── */
 .face-modal-header {
     display: flex;
     align-items: center;
@@ -70,7 +65,6 @@
 }
 .face-modal-close:hover { color: #e6edf3; background: rgba(255,255,255,0.09); }
 
-/* ── Camera container ─────────────────────────────────────── */
 .face-camera-wrap {
     position: relative;
     width: 100%;
@@ -86,7 +80,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scaleX(-1); /* espejo */
+    transform: scaleX(-1); 
     display: block;
 }
 
@@ -99,7 +93,6 @@
     pointer-events: none;
 }
 
-/* ── Guía oval ────────────────────────────────────────────── */
 .face-oval-guide {
     position: absolute;
     top: 50%; left: 50%;
@@ -120,7 +113,6 @@
     50%       { box-shadow: 0 0 32px rgba(0,196,212,0.45), inset 0 0 24px rgba(0,196,212,0.12); }
 }
 
-/* ── Barra de escaneo ─────────────────────────────────────── */
 .face-scan-bar {
     position: absolute;
     left: 0; right: 0;
@@ -139,7 +131,6 @@
     to   { top: 90%; }
 }
 
-/* ── Cargando overlay ─────────────────────────────────────── */
 .face-loading-overlay {
     position: absolute;
     inset: 0;
@@ -168,7 +159,6 @@
     font-weight: 500;
 }
 
-/* ── Barra de progreso ────────────────────────────────────── */
 .face-progress-wrap {
     height: 4px;
     background: #21262d;
@@ -184,7 +174,6 @@
     transition: width 0.25s ease;
 }
 
-/* ── Status ───────────────────────────────────────────────── */
 .face-status {
     text-align: center;
     font-size: 13.5px;
@@ -197,7 +186,6 @@
 .face-status.ok   { color: #4ade80; }
 .face-status.fail { color: #f87171; }
 
-/* ── Botón de cara en login ───────────────────────────────── */
 .btn-face {
     width: 100%;
     padding: 13px;
@@ -223,7 +211,6 @@
 }
 .btn-face svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-/* ── Separador "o" ────────────────────────────────────────── */
 .auth-divider {
     display: flex;
     align-items: center;
@@ -240,7 +227,6 @@
     background: #21262d;
 }
 
-/* ── Sección facial en registro ───────────────────────────── */
 .face-register-section {
     border: 1.5px dashed #30363d;
     border-radius: 12px;

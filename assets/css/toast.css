@@ -1,4 +1,4 @@
-/* ── Contenedor ───────────────────────────────────────────── */
+
 #hv-toast-container {
     position: fixed;
     top: 20px;
@@ -12,7 +12,6 @@
     width: calc(100vw - 40px);
 }
 
-/* ── Toast base ───────────────────────────────────────────── */
 .hv-toast {
     background: #1c2128;
     border: 1px solid #30363d;
@@ -38,7 +37,6 @@
     transition: opacity 0.32s ease, transform 0.32s ease;
 }
 
-/* ── Contenido ────────────────────────────────────────────── */
 .hv-toast-body {
     display: flex;
     align-items: center;
@@ -46,7 +44,6 @@
     padding: 13px 12px 11px;
 }
 
-/* ── Ícono ────────────────────────────────────────────────── */
 .hv-toast-icon {
     flex-shrink: 0;
     width: 28px;
@@ -63,7 +60,6 @@
     display: block;
 }
 
-/* ── Mensaje ──────────────────────────────────────────────── */
 .hv-toast-msg {
     flex: 1;
     font-size: 13.5px;
@@ -72,7 +68,6 @@
     line-height: 1.45;
 }
 
-/* ── Botón cerrar ─────────────────────────────────────────── */
 .hv-toast-close {
     flex-shrink: 0;
     background: none;
@@ -95,7 +90,6 @@
     background: rgba(255,255,255,0.06);
 }
 
-/* ── Barra de progreso ────────────────────────────────────── */
 .hv-toast-progress {
     height: 3px;
     width: 100%;
@@ -103,7 +97,6 @@
 }
 .hv-toast-progress.hv-toast-progress-run { width: 0%; }
 
-/* ── Variantes ────────────────────────────────────────────── */
 .hv-toast-success {
     border-left-color: #22c55e;
 }
@@ -140,7 +133,6 @@
 }
 .hv-toast-warning .hv-toast-progress { background: #f59e0b; }
 
-/* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 480px) {
     #hv-toast-container {
         top: 12px;

@@ -27,7 +27,7 @@ $resultado = $auth->resetPassword();
 <?php endif; ?>
 <div class="auth-page">
 
-    <!-- ── PANEL IZQUIERDO ── -->
+    
     <div class="auth-left">
         <div class="auth-left-content">
             <div class="auth-left-top">
@@ -43,7 +43,7 @@ $resultado = $auth->resetPassword();
                 <p>Usa una combinación de letras, números y símbolos para mayor protección.</p>
             </div>
             
-            <!-- Mascota Hevy flotando -->
+            
             <img src="../../assets/img/recordando.png" class="hevy-mascot" alt="Mascota Hevy Recordando">
 
             <div class="auth-left-bottom" style="z-index: 1;">
@@ -52,7 +52,7 @@ $resultado = $auth->resetPassword();
         </div>
     </div>
 
-    <!-- ── PANEL DERECHO ── -->
+    
     <div class="auth-right">
         <p class="auth-form-label">Restablecer</p>
         <h1>Nueva <span>contraseña.</span></h1>

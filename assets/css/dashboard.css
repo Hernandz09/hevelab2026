@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: 'Inter', 'Segoe UI', sans-serif;
@@ -25,11 +29,18 @@ body {
     border-radius: 14px;
     padding: 2.4rem 2rem;
     text-align: center;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
-.brand-logo { margin-bottom: 20px; }
-.brand-logo img { width: 140px; height: auto; max-width: 100%; }
+.brand-logo {
+    margin-bottom: 20px;
+}
+
+.brand-logo img {
+    width: 140px;
+    height: auto;
+    max-width: 100%;
+}
 
 .welcome-box h1 {
     font-size: 1.6rem;
@@ -38,7 +49,11 @@ body {
     margin-bottom: 10px;
 }
 
-.welcome-box p { font-size: 15px; color: #8b949e; margin-bottom: 22px; }
+.welcome-box p {
+    font-size: 15px;
+    color: #8b949e;
+    margin-bottom: 22px;
+}
 
 .logout {
     display: inline-block;
@@ -50,4 +65,7 @@ body {
     font-weight: 700;
     transition: background 0.2s;
 }
-.logout:hover { background: #00a8b5; }
+
+.logout:hover {
+    background: #00a8b5;
+}

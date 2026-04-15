@@ -2,17 +2,62 @@
 session_start();
 header('Content-Type: application/json; charset=utf-8');
 
-if (!isset($_SESSION['user_id'])) {
+require_once __DIR__ . '/../config/conexion.php';
+require_once __DIR__ . '/../Models/userModel.php';
+
+$action = $_GET['action'] ?? 'listar';
+$public_actions = ['iniciar_registro', 'actualizar_etapa', 'cancelar_registro'];
+
+if (!isset($_SESSION['user_id']) && !in_array($action, $public_actions)) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'No autorizado.']);
     exit;
 }
 
-require_once __DIR__ . '/../config/conexion.php';
-
-$action = $_GET['action'] ?? 'listar';
+$userModel = new UserModel($pdo);
 
 switch ($action) {
+
+    case 'iniciar_registro':
+        $body = json_decode(file_get_contents('php://input'), true);
+        $email = trim($body['email'] ?? '');
+        if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo json_encode(['success' => false, 'message' => 'Email inválido.']);
+            break;
+        }
+        $id = $userModel->iniciarRegistroEmail($email);
+        if ($id) {
+            echo json_encode(['success' => true, 'id' => $id]);
+        }
+        else {
+            echo json_encode(['success' => false, 'message' => 'Error al iniciar registro o email ya existe.']);
+        }
+        break;
+
+    case 'actualizar_etapa':
+        $body = json_decode(file_get_contents('php://input'), true);
+        $id = (int)($body['id'] ?? 0);
+        $etapa = trim($body['etapa'] ?? '');
+        if ($id && $etapa) {
+            $success = $userModel->actualizarEtapaRegistro($id, $etapa);
+            echo json_encode(['success' => $success]);
+        }
+        else {
+            echo json_encode(['success' => false, 'message' => 'IDs o etapa faltantes.']);
+        }
+        break;
+
+    case 'cancelar_registro':
+        $body = json_decode(file_get_contents('php://input'), true);
+        $id = (int)($body['id'] ?? 0);
+        if ($id) {
+            $success = $userModel->eliminarUsuarioPendiente($id);
+            echo json_encode(['success' => $success]);
+        }
+        else {
+            echo json_encode(['success' => false]);
+        }
+        break;
 
     case 'listar':
         $stmt = $pdo->query("
@@ -31,10 +76,10 @@ switch ($action) {
         break;
 
     case 'crear':
-        $body     = json_decode(file_get_contents('php://input'), true);
-        $usuario  = trim($body['usuario']  ?? '');
-        $email    = trim($body['email']    ?? '');
-        $password = $body['password']       ?? '';
+        $body = json_decode(file_get_contents('php://input'), true);
+        $usuario = trim($body['usuario'] ?? '');
+        $email = trim($body['email'] ?? '');
+        $password = $body['password'] ?? '';
 
         if (!$usuario || !$email || !$password) {
             http_response_code(400);
@@ -56,16 +101,16 @@ switch ($action) {
         }
 
         $hash = password_hash($password, PASSWORD_BCRYPT);
-        $ins  = $pdo->prepare("INSERT INTO usuarios (usuario, email, password, verificado) VALUES (?, ?, ?, 1)");
+        $ins = $pdo->prepare("INSERT INTO usuarios (usuario, email, password, verificado) VALUES (?, ?, ?, 1)");
         $ins->execute([$usuario, $email, $hash]);
         echo json_encode(['success' => true, 'message' => 'Usuario creado correctamente.', 'id' => $pdo->lastInsertId()]);
         break;
 
     case 'editar':
-        $body    = json_decode(file_get_contents('php://input'), true);
-        $id      = (int)($body['id']      ?? 0);
-        $usuario = trim($body['usuario']  ?? '');
-        $email   = trim($body['email']    ?? '');
+        $body = json_decode(file_get_contents('php://input'), true);
+        $id = (int)($body['id'] ?? 0);
+        $usuario = trim($body['usuario'] ?? '');
+        $email = trim($body['email'] ?? '');
 
         if (!$id || !$usuario || !$email) {
             http_response_code(400);
@@ -93,7 +138,7 @@ switch ($action) {
 
     case 'eliminar':
         $body = json_decode(file_get_contents('php://input'), true);
-        $id   = (int)($body['id'] ?? 0);
+        $id = (int)($body['id'] ?? 0);
 
         if (!$id) {
             http_response_code(400);
@@ -113,7 +158,7 @@ switch ($action) {
 
     case 'resetear_facial':
         $body = json_decode(file_get_contents('php://input'), true);
-        $id   = (int)($body['id'] ?? 0);
+        $id = (int)($body['id'] ?? 0);
 
         if (!$id) {
             http_response_code(400);
@@ -127,8 +172,8 @@ switch ($action) {
         break;
 
     case 'toggle_verificado':
-        $body       = json_decode(file_get_contents('php://input'), true);
-        $id         = (int)($body['id']         ?? 0);
+        $body = json_decode(file_get_contents('php://input'), true);
+        $id = (int)($body['id'] ?? 0);
         $verificado = (int)($body['verificado'] ?? 0);
 
         if (!$id) {

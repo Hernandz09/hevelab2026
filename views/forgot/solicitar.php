@@ -30,7 +30,7 @@ $resultado = $auth->solicitarReset();
 <?php endif; ?>
 <div class="auth-page">
 
-    <!-- ── PANEL IZQUIERDO ── -->
+    
     <div class="auth-left">
         <div class="auth-left-content">
             <div class="auth-left-top">
@@ -46,7 +46,7 @@ $resultado = $auth->solicitarReset();
                 <p>Te enviaremos un código de verificación a tu correo electrónico para restablecer tu contraseña.</p>
             </div>
             
-            <!-- Mascota Hevy flotando -->
+            
             <img src="../../assets/img/enviando.png" class="hevy-mascot" alt="Mascota Hevy Enviando">
 
             <div class="auth-left-bottom" style="z-index: 1;">
@@ -55,7 +55,7 @@ $resultado = $auth->solicitarReset();
         </div>
     </div>
 
-    <!-- ── PANEL DERECHO ── -->
+    
     <div class="auth-right">
         <p class="auth-form-label">Contraseña olvidada</p>
         <h1>Ingresa tu <span>correo.</span></h1>

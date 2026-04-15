@@ -32,7 +32,7 @@ $error = $auth->login();
 <?php endif; ?>
 <div class="auth-page">
 
-    <!-- ── PANEL IZQUIERDO ── -->
+    
     <div class="auth-left">
         <div class="auth-left-content">
             <div class="auth-left-top">
@@ -48,7 +48,7 @@ $error = $auth->login();
                 <p>Controla ventas, inventario, usuarios y más — todo desde un solo lugar.</p>
             </div>
             
-            <!-- Mascota Hevy flotando -->
+            
             <img src="../../assets/img/hevy_01.png" class="hevy-mascot" alt="Mascota Hevy">
 
             <div class="auth-left-bottom" style="z-index: 1;">
@@ -57,7 +57,7 @@ $error = $auth->login();
         </div>
     </div>
 
-    <!-- ── PANEL DERECHO ── -->
+    
     <div class="auth-right">
         <p class="auth-form-label">Bienvenido</p>
         <h1>Iniciar <span>sesión.</span></h1>
@@ -108,7 +108,6 @@ $error = $auth->login();
     </div>
 </div>
 
-<!-- CAPTCHA MODAL -->
 <div class="captcha-overlay" id="captcha-overlay" aria-hidden="true">
     <div class="captcha-modal" role="dialog" aria-modal="true">
         <div class="captcha-header">

@@ -1,6 +1,4 @@
-/* ═══════════════════════════════════════
-   CAPTCHA MODAL OVERLAY
-═══════════════════════════════════════ */
+
 .captcha-overlay {
     position: fixed;
     inset: 0;
@@ -34,7 +32,6 @@
     transform: scale(1) translateY(0);
 }
 
-/* Header */
 .captcha-header {
     display: flex;
     justify-content: space-between;
@@ -67,7 +64,6 @@
     background: #21262d;
 }
 
-/* Footer */
 .captcha-footer {
     display: flex;
     justify-content: space-between;
@@ -111,9 +107,6 @@
     font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
-/* ═══════════════════════════════════════
-   SLIDER CAPTCHA INTERNO
-═══════════════════════════════════════ */
 .sc-wrap {
     user-select: none;
     -webkit-user-select: none;
@@ -128,7 +121,6 @@
     font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
-/* Canvas wrap */
 .sc-canvas-wrap {
     position: relative;
     width: 280px;
@@ -155,7 +147,6 @@
 
 .sc-piece:active { cursor: grabbing; }
 
-/* Slider bar */
 .sc-slider-wrap {
     width: 280px;
     margin: 0 auto;
@@ -223,7 +214,6 @@
 .sc-result.ok   { color: #16a34a; }
 .sc-result.fail { color: #dc2626; }
 
-/* Shake animation */
 @keyframes sc-shake {
     0%, 100% { left: 0; }
     20%       { left: calc(var(--pos) - 9px); }
@@ -236,9 +226,6 @@
     animation: sc-shake 0.55s ease forwards;
 }
 
-/* ═══════════════════════════════════════
-   LOCKOUT OVERLAY (demasiados intentos)
-═══════════════════════════════════════ */
 .sc-lock {
     position: absolute;
     inset: 0;

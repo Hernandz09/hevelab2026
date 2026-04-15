@@ -15,12 +15,11 @@ $stmt->execute([$_SESSION['user_id']]);
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($data) {
-    // usuario ya tiene el nombre completo si fue registrado con el nuevo flujo
+    
     $usuario = $data['usuario'];
     $email   = $data['email'];
 }
 
-// Nombre amigable: primera palabra del nombre o el usuario completo
 $nombre_corto = explode(' ', $usuario)[0];
 ?>
 <!DOCTYPE html>
@@ -609,11 +608,10 @@ $nombre_corto = explode(' ', $usuario)[0];
     </style>
 </head>
 <body>
-<!-- Theme loader -->
+
 <script src="assets/js/theme.js"></script>
 <script src="assets/js/toast.js"></script>
 
-<!-- ══ SIDEBAR ═══════════════════════════════════════ -->
 <aside class="sidebar">
     <div class="sidebar-logo">
         <img src="assets/img/logodark_02.png" alt="HEVELAB" id="dash-logo">
@@ -655,10 +653,9 @@ $nombre_corto = explode(' ', $usuario)[0];
     </div>
 </aside>
 
-<!-- ══ MAIN ═════════════════════════════════════════ -->
 <div class="main">
 
-    <!-- TOPBAR -->
+    
     <header class="topbar">
         <div class="topbar-title">
             <h1>Análisis del Sistema</h1>
@@ -674,7 +671,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
                 Limpiar no verificados
             </button>
-            <!-- Theme Switcher -->
+            
             <div class="theme-switch-wrap" style="position:relative;top:auto;right:auto;">
                 <div class="theme-switch" id="theme-switch">
                     <button id="btn-dark" title="Modo oscuro">
@@ -688,10 +685,10 @@ $nombre_corto = explode(' ', $usuario)[0];
         </div>
     </header>
 
-    <!-- CONTENT -->
+    
     <main class="content">
 
-        <!-- STAT CARDS -->
+        
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon cyan">
@@ -744,9 +741,9 @@ $nombre_corto = explode(' ', $usuario)[0];
             </div>
         </div>
 
-        <!-- CHARTS -->
+        
         <div class="charts-grid">
-            <!-- Gráfica de área: registros 30 días -->
+            
             <div class="chart-card">
                 <div class="chart-header">
                     <div>
@@ -763,7 +760,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                 </div>
             </div>
 
-            <!-- Gráfica donut: facial vs contraseña -->
+            
             <div class="chart-card">
                 <div class="chart-header">
                     <div>
@@ -785,7 +782,7 @@ $nombre_corto = explode(' ', $usuario)[0];
             </div>
         </div>
 
-        <!-- USERS TABLE -->
+        
         <div class="table-card" id="section-usuarios">
             <div class="table-header">
                 <div>

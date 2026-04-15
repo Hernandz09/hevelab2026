@@ -308,7 +308,6 @@ $nombre_corto = explode(' ', $usuario)[0];
 <script src="../../assets/js/theme.js"></script>
 <script src="../../assets/js/toast.js"></script>
 
-<!-- ══ SIDEBAR ══ -->
 <aside class="sidebar">
     <div class="sidebar-logo">
         <img src="../../assets/img/logodark_02.png" alt="HEVELAB" id="dash-logo">
@@ -347,7 +346,6 @@ $nombre_corto = explode(' ', $usuario)[0];
     </div>
 </aside>
 
-<!-- ══ MAIN ══ -->
 <div class="main">
     <header class="topbar">
         <div class="topbar-title">
@@ -369,10 +367,10 @@ $nombre_corto = explode(' ', $usuario)[0];
     <main class="content">
         <div class="config-grid">
 
-            <!-- ── COLUMNA PRINCIPAL ── -->
+            
             <div class="config-main">
 
-                <!-- BIOMETRÍA FACIAL -->
+                
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
@@ -387,7 +385,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                         </div>
                     </div>
 
-                    <!-- SETTING: THRESHOLD -->
+                    
                     <div class="setting-item">
                         <div class="setting-label">
                             <span>Nivel de seguridad del reconocimiento facial</span>
@@ -398,7 +396,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                             <strong>10%</strong> = mínima seguridad (acepta similitudes lejanas).
                         </div>
 
-                        <!-- BIG NUMBER DISPLAY -->
+                        
                         <div class="threshold-display">
                             <div class="threshold-big" id="thresh-val">70%</div>
                             <div class="threshold-pct" id="thresh-pct">Alta seguridad</div>
@@ -407,7 +405,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                             </div>
                         </div>
 
-                        <!-- SLIDER -->
+                        
                         <div class="slider-wrap">
                             <div class="range-labels">
                                 <span>10% — Muy permisivo</span>
@@ -421,7 +419,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                                 step="1"
                                 value="70"
                             >
-                            <!-- Zone indicator (izq = permisivo, der = estricto) -->
+                            
                             <div class="zone-bar" style="margin-top:10px;">
                                 <span class="z4"></span>
                                 <span class="z3"></span>
@@ -438,7 +436,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                     </div>
                 </div>
 
-                <!-- SEGURIDAD Y OTP -->
+                
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
@@ -452,7 +450,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                         </div>
                     </div>
 
-                    <!-- OTP Expiración -->
+                    
                     <div class="setting-item">
                         <div class="setting-label">Tiempo de expiración del OTP</div>
                         <div class="setting-desc">
@@ -473,7 +471,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                         </div>
                     </div>
 
-                    <!-- Máximo intentos -->
+                    
                     <div class="setting-item">
                         <div class="setting-label">Máximo de intentos de inicio de sesión</div>
                         <div class="setting-desc">
@@ -494,19 +492,19 @@ $nombre_corto = explode(' ', $usuario)[0];
                         </div>
                     </div>
 
-                    <!-- SAVE -->
+                    
                     <button class="btn-save-config" id="btn-guardar">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                         Guardar configuración
                     </button>
                 </div>
 
-            </div><!-- /config-main -->
+            </div>
 
-            <!-- ── COLUMNA LATERAL ── -->
+            
             <div class="config-sidebar">
 
-                <!-- GUÍA DE VALORES -->
+                
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
@@ -534,7 +532,7 @@ $nombre_corto = explode(' ', $usuario)[0];
                     </div>
                 </div>
 
-                <!-- CONFIGURACIÓN ACTUAL -->
+                
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title" style="font-size:0.9rem;">Estado actual guardado</div>
@@ -559,9 +557,9 @@ $nombre_corto = explode(' ', $usuario)[0];
                     </div>
                 </div>
 
-            </div><!-- /config-sidebar -->
+            </div>
 
-        </div><!-- /config-grid -->
+        </div>
     </main>
 </div>
 

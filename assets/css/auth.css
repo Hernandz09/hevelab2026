@@ -2,9 +2,6 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ═══════════════════════════════════════════════
-   LAYOUT SPLIT-SCREEN
-═══════════════════════════════════════════════ */
 body {
     font-family: 'Inter', 'Segoe UI', sans-serif;
     background: #0d1117;
@@ -16,7 +13,6 @@ body {
     min-height: 100vh;
 }
 
-/* ── Panel izquierdo ── */
 .auth-left {
     flex: 1;
     position: relative;
@@ -48,29 +44,27 @@ body {
     justify-content: space-between;
 }
 
-/* ── Mascota Hevy ── */
 .hevy-mascot {
     position: absolute;
-    bottom: -45px; /* Compensa los 40px de padding-bottom de .auth-left para pegar al borde */
-    right: -100px; /* Movido un poco más a la izquierda para que no se corten las manos/avión de papel */
+    bottom: -45px; 
+    right: -100px; 
     width: auto;
-    height: 75vh; /* Un poco más pequeño para dar aire */
-    max-height: 600px; /* Límite máximo */
+    height: 75vh; 
+    max-height: 600px; 
     object-fit: contain;
-    z-index: 0; /* Asegura estar detrás del texto de la izquierda */
+    z-index: 0; 
     pointer-events: none;
     opacity: 0.98;
-    filter: drop-shadow(-15px 0 30px rgba(0,0,0,0.40)); /* Sombra hacia la izquierda para dar profundidad respecto al borde derecho */
+    filter: drop-shadow(-15px 0 30px rgba(0,0,0,0.40)); 
 }
 
-/* ── Mascota Hevy (Variante Registro) ── */
 .hevy-mascot-reg {
     position: absolute;
-    bottom: -45px; /* Pegado al suelo del contenedor igual que la versión normal */
+    bottom: -45px; 
     left: 50%;
-    transform: translateX(-50%); /* Centrado perfectamente solo en horizontal */
+    transform: translateX(-50%); 
     width: auto;
-    height: 55vh; /* Más grande */
+    height: 55vh; 
     max-height: 500px;
     object-fit: contain;
     z-index: 0;
@@ -98,7 +92,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 0 15vh 0; /* Empuja todo el bloque de texto hacia arriba para despejar espacio para Hevy */
+    padding: 0 0 15vh 0; 
 }
 
 .auth-label-tag {
@@ -134,7 +128,6 @@ body {
     color: #484f58;
 }
 
-/* ── Panel derecho ── */
 .auth-right {
     width: 480px;
     min-height: 100vh;
@@ -147,9 +140,6 @@ body {
     border-left: 1px solid #21262d;
 }
 
-/* ═══════════════════════════════════════════════
-   FORM CONTENT
-═══════════════════════════════════════════════ */
 .auth-form-label {
     font-size: 11px;
     font-weight: 700;
@@ -184,7 +174,6 @@ body {
 
 .auth-sub a:hover { text-decoration: underline; }
 
-/* ── Grupos de input ── */
 .form-group { margin-bottom: 14px; }
 
 label {
@@ -222,14 +211,12 @@ input:focus {
     box-shadow: 0 0 0 3px rgba(0, 196, 212, 0.15);
 }
 
-/* Icon dentro del input */
 .input-icon {
     position: absolute; right: 14px;
     color: #484f58; display: flex; align-items: center; pointer-events: none;
 }
 .input-icon svg { width: 16px; height: 16px; }
 
-/* Toggle de contraseña */
 .toggle-pass {
     position: absolute; right: 12px;
     background: none; border: none; cursor: pointer;
@@ -239,7 +226,6 @@ input:focus {
 .toggle-pass:hover, .toggle-pass.active { color: #00c4d4; }
 .toggle-pass svg { width: 17px; height: 17px; display: block; }
 
-/* Forgot link dentro del form */
 .forgot-link {
     text-align: right; margin: -6px 0 10px;
 }
@@ -249,7 +235,6 @@ input:focus {
 }
 .forgot-link a:hover { text-decoration: underline; }
 
-/* ── Barra de fuerza ── */
 .strength-wrap { display: flex; align-items: center; gap: 10px; margin: 6px 0 10px; }
 .strength-segments { display: flex; gap: 4px; flex: 1; }
 .seg { flex: 1; height: 4px; border-radius: 99px; background: #21262d; transition: background 0.3s; }
@@ -268,7 +253,6 @@ input:focus {
 .match-msg.ok   { color: #4ade80; }
 .match-msg.fail { color: #f87171; }
 
-/* ── Botón principal ── */
 .btn-submit {
     width: 100%; padding: 14px;
     background: #00c4d4; color: #0d1117;
@@ -284,7 +268,6 @@ input:focus {
 }
 .btn-submit:active { transform: scale(0.98); }
 
-/* ── Mensajes ── */
 .error-msg {
     background: rgba(239,68,68,0.08);
     border: 1px solid rgba(239,68,68,0.25);
@@ -316,7 +299,6 @@ input:focus {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── OTP input grande ── */
 .otp-inputs input {
     width: 100%;
     padding: 16px;
@@ -342,14 +324,12 @@ input:focus {
 .otp-hint { font-size: 13.5px; color: #8b949e; margin-bottom: 20px; line-height: 1.6; }
 .otp-hint strong { color: #e6edf3; }
 
-/* ── Back link ── */
 .back-link {
     display: inline-block; margin-top: 20px;
     font-size: 13px; color: #00c4d4; font-weight: 600; text-decoration: none;
 }
 .back-link:hover { text-decoration: underline; }
 
-/* ── Resend OTP countdown ── */
 .resend-wrap { text-align: center; margin-top: 14px; }
 
 .resend-countdown {
@@ -376,7 +356,6 @@ input:focus {
 }
 .resend-btn:hover { text-decoration: underline; color: #00a8b5; }
 
-/* ── Responsive ── */
 @media (max-width: 900px) {
     .auth-left { display: none; }
     .auth-right { width: 100%; padding: 40px 28px; border-left: none; }
@@ -386,9 +365,6 @@ input:focus {
     .auth-right { padding: 32px 20px; }
 }
 
-/* ═══════════════════════════════════════════════
-   SPLASH SCREEN — se activa manualmente
-═══════════════════════════════════════════════ */
 #hv-splash {
     position: fixed;
     inset: 0;
@@ -422,9 +398,6 @@ input:focus {
     100% { opacity: 1; transform: scale(1);   }
 }
 
-/* ═══════════════════════════════════════════════
-   SLOGAN — esquina inferior derecha
-═══════════════════════════════════════════════ */
 #hv-slogan {
     position: fixed;
     bottom: 22px;

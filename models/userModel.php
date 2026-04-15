@@ -10,7 +10,7 @@ class UserModel
 
     public function buscarUsuario($usuario)
     {
-        // Busca por nombre de usuario O por email (para login con email)
+
         $stmt = $this->pdo->prepare("SELECT id, password, email, usuario FROM usuarios WHERE usuario = ? OR email = ? LIMIT 1");
         $stmt->execute([$usuario, $usuario]);
         return $stmt->fetch();
@@ -36,10 +36,34 @@ class UserModel
         return $update->execute([$otp, $expiracion, $id]);
     }
 
-    public function registrarUsuario($usuario, $email, $password_hash)
+    public function registrarUsuario($usuario, $email, $password_hash, $etapa = 'Registro inicial')
     {
-        $stmt = $this->pdo->prepare("INSERT INTO usuarios (usuario, email, password) VALUES (?, ?, ?)");
-        return $stmt->execute([$usuario, $email, $password_hash]);
+        $stmt = $this->pdo->prepare("INSERT INTO usuarios (usuario, email, password, verificado, registro_etapa) VALUES (?, ?, ?, 0, ?)");
+        if ($stmt->execute([$usuario, $email, $password_hash, $etapa])) {
+            return $this->pdo->lastInsertId();
+        }
+        return false;
+    }
+
+    public function iniciarRegistroEmail($email)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO usuarios (email, verificado, registro_etapa) VALUES (?, 0, 'Correo ingresado')");
+        if ($stmt->execute([$email])) {
+            return $this->pdo->lastInsertId();
+        }
+        return false;
+    }
+
+    public function actualizarEtapaRegistro($id, $etapa)
+    {
+        $stmt = $this->pdo->prepare("UPDATE usuarios SET registro_etapa = ? WHERE id = ?");
+        return $stmt->execute([$etapa, $id]);
+    }
+
+    public function eliminarUsuarioPendiente($id)
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM usuarios WHERE id = ? AND verificado = 0");
+        return $stmt->execute([$id]);
     }
 
     public function validarOTP($id, $otp)
