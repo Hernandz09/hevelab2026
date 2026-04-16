@@ -1,6 +1,6 @@
 <div align="center">
   <p>
-    <img src="public/assets/images/icons/logo.svg" alt="HeveLab" width="96" height="96">
+    <img src="https://github.com/Hernandz09/hevelab2026/blob/structure/public/assets/images/logos/logo_light_01.png" alt="HeveLab" width="96" height="96">
   </p>
   <h1>HeveLab MVC · VIISION ERP</h1>
   <p>Proyecto web en PHP con arquitectura MVC, panel tipo SPA (rutas asíncronas), autenticación con OTP y soporte de login facial.</p>
