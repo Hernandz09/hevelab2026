@@ -1,0 +1,267 @@
+
+
+body.light-theme {
+    background-color: #f6f8fa;
+    color: #1f2328;
+}
+
+body.light-theme .auth-left::before {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.85) 0%, 
+        rgba(255, 255, 255, 0.70) 60%, 
+        rgba(255, 255, 255, 0.50) 100% 
+    );
+}
+body.light-theme .auth-right {
+    background: #ffffff;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05); 
+}
+
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3 {
+    color: #1f2328;
+}
+body.light-theme h1 span,
+body.light-theme h2 span {
+    color: #008ba8; 
+}
+body.light-theme p,
+body.light-theme label,
+body.light-theme .auth-sub {
+    color: #59636e;
+}
+body.light-theme .auth-left-body h2 { color: #0a0c10; }
+body.light-theme .auth-left-body p { color: #424a53; }
+
+body.light-theme input {
+    background: #ffffff;
+    border-color: #d0d7de;
+    color: #1f2328;
+}
+body.light-theme input::placeholder {
+    color: #8b949e;
+}
+body.light-theme input:focus {
+    border-color: #008ba8;
+    background: #f6f8fa;
+    box-shadow: 0 0 0 4px rgba(0, 139, 168, 0.1);
+}
+body.light-theme .input-wrap svg {
+    color: #656d76;
+}
+body.light-theme .toggle-pass:hover svg {
+    color: #1f2328;
+}
+
+body.light-theme .btn-submit {
+    background: #008ba8;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 139, 168, 0.3);
+}
+body.light-theme .btn-submit:hover {
+    background: #006f87;
+    box-shadow: 0 6px 20px rgba(0, 139, 168, 0.4);
+}
+body.light-theme .btn-face {
+    background: #ffffff;
+    border-color: #d0d7de;
+    color: #59636e;
+}
+body.light-theme .btn-face:hover {
+    border-color: #008ba8;
+    color: #008ba8;
+    background: #f0fbff;
+}
+
+body.light-theme .auth-divider { color: #8c959f; }
+body.light-theme .auth-divider::before,
+body.light-theme .auth-divider::after { background: #d0d7de; }
+
+body.light-theme .face-register-section {
+    border-color: #d0d7de;
+}
+body.light-theme .face-register-toggle {
+    color: #59636e;
+}
+body.light-theme .face-register-toggle:hover {
+    color: #1f2328;
+}
+
+body.light-theme .seg { background: #d0d7de; }
+
+body.light-theme .hv-toast {
+    background: #ffffff;
+    border-color: #d0d7de;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+body.light-theme .hv-toast-content { color: #1f2328; }
+body.light-theme .hv-toast-title { color: #1f2328; }
+body.light-theme .hv-toast-msg { color: #59636e; }
+
+body.light-theme .face-modal,
+body.light-theme .captcha-modal {
+    background: #ffffff;
+    border-color: #d0d7de;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
+}
+body.light-theme .face-modal-header h3,
+body.light-theme .captcha-modal-header h3 {
+    color: #1f2328;
+}
+body.light-theme .face-modal-header span { color: #008ba8; }
+body.light-theme .face-status { color: #59636e; }
+body.light-theme .face-loading-overlay {
+    background: rgba(255, 255, 255, 0.85);
+}
+body.light-theme .face-spinner {
+    border-color: #d0d7de;
+    border-top-color: #008ba8;
+}
+
+body.light-theme .face-modal-close,
+body.light-theme .cap-close {
+    background: #f6f8fa;
+    border-color: #d0d7de;
+    color: #59636e;
+}
+body.light-theme .face-modal-close:hover,
+body.light-theme .cap-close:hover {
+    background: #e1e4e8;
+    color: #1f2328;
+}
+
+body.light-theme .otp-input {
+    background: #ffffff;
+    border-color: #d0d7de;
+    color: #1f2328;
+}
+body.light-theme .otp-input:focus {
+    border-color: #008ba8;
+    background: #f6f8fa;
+}
+body.light-theme .resend-text { color: #59636e; }
+
+body.light-theme .otp-hint strong {
+    color: #008ba8;
+    background: rgba(0, 139, 168, 0.10);
+    border-color: rgba(0, 139, 168, 0.25);
+}
+
+body.light-theme .resend-countdown {
+    color: #59636e;
+    border-color: #d0d7de;
+    background: rgba(255, 255, 255, 0.85);
+}
+
+body.light-theme .resend-timer-badge {
+    background: rgba(0, 139, 168, 0.10);
+    border-color: rgba(0, 139, 168, 0.25);
+    color: #008ba8;
+}
+
+body.light-theme .resend-btn {
+    color: #ffffff;
+    background: #008ba8;
+    border-color: rgba(0, 139, 168, 0.55);
+    box-shadow: 0 10px 26px rgba(0, 139, 168, 0.18);
+}
+
+body.light-theme .resend-btn:hover {
+    background: #006f87;
+}
+
+body.light-theme .otp-expiry {
+    color: #59636e;
+}
+
+body.light-theme .otp-expiry-badge {
+    background: #ffffff;
+    border-color: #d0d7de;
+    color: #008ba8;
+}
+
+body.light-theme .otp-expired-modal {
+    background: #ffffff;
+    border-color: #d0d7de;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
+}
+
+body.light-theme .otp-expired-head {
+    border-bottom-color: #d0d7de;
+}
+
+body.light-theme .otp-expired-title {
+    color: #1f2328;
+}
+
+body.light-theme .otp-expired-close {
+    background: #f6f8fa;
+    border-color: #d0d7de;
+    color: #59636e;
+}
+
+body.light-theme .otp-expired-close:hover {
+    color: #1f2328;
+    border-color: rgba(0, 139, 168, 0.45);
+}
+
+body.light-theme .otp-expired-body {
+    color: #59636e;
+}
+
+body.light-theme .auth-splash-manual {
+    background: #ffffff;
+}
+
+.theme-switch-wrap {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 100;
+}
+.theme-switch {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 99px;
+    padding: 6px;
+    display: flex;
+    gap: 4px;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+}
+.theme-switch button {
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-switch button svg {
+    width: 16px; height: 16px; pointer-events: none;
+}
+.theme-switch button.active {
+    background: #0d1117;
+    color: #00c4d4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.light-theme .theme-switch {
+    background: #f6f8fa;
+    border-color: #d0d7de;
+}
+body.light-theme .theme-switch button {
+    color: #656d76;
+}
+body.light-theme .theme-switch button.active {
+    background: #ffffff;
+    color: #008ba8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

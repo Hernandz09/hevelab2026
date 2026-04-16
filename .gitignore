@@ -1,0 +1,2 @@
+config/mailer_credentials.php
+storage/logs/otp.log

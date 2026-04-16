@@ -1,0 +1,7 @@
+{
+    "face_threshold": 0.75,
+    "otp_expiracion_min": 5,
+    "max_intentos_login": 5,
+    "updated_at": "2026-04-15 08:35:07",
+    "updated_by": 2
+}
